@@ -2,7 +2,6 @@ import streamlit as st
 from time import sleep
 
 from recommender import RecommenderSystem
-
 global id_
 
 @st.cache_data
