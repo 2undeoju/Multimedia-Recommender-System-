@@ -261,7 +261,7 @@ class RecommenderSystem:
             tfidf_songs = tfidf_songs.sort_values('similarity_score', ascending=False)
 
             id_ivec256_songs = self.retrieve_similar_songs(song_id, self.id_ivec256_mmsr, self.cosine_similarity_between_songs, self.info_data, top_n).assign(method='word2vec')
-           id_ivec256_songs = id_ivec256_songs.sort_values('similarity_score', ascending=False)
+            id_ivec256_songs = id_ivec256_songs.sort_values('similarity_score', ascending=False)
 
             late_fusion_scores = (tfidf_songs['similarity_score'] + id_ivec256_songs['similarity_score']) / 2
             late_fusion_data = tfidf_songs.drop(columns=['similarity_score'])
