@@ -46,6 +46,3 @@ tzlocal==5.2
 urllib3==2.1.0
 validators==0.22.0
 zipp==3.17.0
-pandas==1.0.5
-streamlit==0.71.0
-scikit_learn==0.24.0
