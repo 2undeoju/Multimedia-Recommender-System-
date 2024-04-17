@@ -15,10 +15,10 @@ class RecommenderSystem:
         self.tfidf_data = pd.read_csv(f'{dataset_folder}/id_lyrics_tf-idf_mmsr.tsv', sep='\t', index_col='id')
 
         # BERT data
-        self.bert_data = pd.read_csv(f'{dataset_folder}/id_lyrics_bert_mmsr.tsv', sep='\t', index_col='id')
+        #self.bert_data = pd.read_csv(f'{dataset_folder}/id_lyrics_bert_mmsr.tsv', sep='\t', index_col='id')
 
         # Word2Vec data
-        self.word2vec_data = pd.read_csv(f'{dataset_folder}/id_lyrics_word2vec_mmsr.tsv', sep='\t', index_col='id')
+        #self.word2vec_data = pd.read_csv(f'{dataset_folder}/id_lyrics_word2vec_mmsr.tsv', sep='\t', index_col='id')
 
         # Info data
         self.info_data = pd.read_csv(f'{dataset_folder}/id_information_mmsr.tsv', sep='\t')
@@ -32,33 +32,33 @@ class RecommenderSystem:
         self.id_ivec256_mmsr.set_index(self.id_ivec256_mmsr.columns[0], inplace=True)
 
         # ivec512
-        self.id_ivec512_mmsr = pd.read_csv(f'{dataset_folder}/id_ivec512_mmsr.tsv', sep='\t')
+        #self.id_ivec512_mmsr = pd.read_csv(f'{dataset_folder}/id_ivec512_mmsr.tsv', sep='\t')
 
         # BLF correlation
-        self.id_blf_correlation_mmsr = pd.read_csv(f'{dataset_folder}/id_blf_correlation_mmsr.tsv', sep='\t')
+        #self.id_blf_correlation_mmsr = pd.read_csv(f'{dataset_folder}/id_blf_correlation_mmsr.tsv', sep='\t')
 
         # BLF spectral
-        self.id_blf_spectral_mmsr = pd.read_csv(f'{dataset_folder}/id_blf_spectral_mmsr.tsv', sep='\t')
-        self.id_blf_spectral_mmsr.set_index(self.id_blf_spectral_mmsr.columns[0], inplace=True)
+        #self.id_blf_spectral_mmsr = pd.read_csv(f'{dataset_folder}/id_blf_spectral_mmsr.tsv', sep='\t')
+        #self.id_blf_spectral_mmsr.set_index(self.id_blf_spectral_mmsr.columns[0], inplace=True)
 
         # MusicNN
-        self.id_musicnn_mmsr = pd.read_csv(f'{dataset_folder}/id_musicnn_mmsr.tsv', sep='\t')
-        self.id_musicnn_mmsr.set_index(self.id_musicnn_mmsr.columns[0], inplace=True)
+        #self.id_musicnn_mmsr = pd.read_csv(f'{dataset_folder}/id_musicnn_mmsr.tsv', sep='\t')
+        #self.id_musicnn_mmsr.set_index(self.id_musicnn_mmsr.columns[0], inplace=True)
 
         # INCP
-        id_incp_mmsr = pd.read_csv(f'{dataset_folder}/id_incp_mmsr.tsv', sep='\t')
-        self.id_incp_mmsr = id_incp_mmsr.set_index('id')
+        #id_incp_mmsr = pd.read_csv(f'{dataset_folder}/id_incp_mmsr.tsv', sep='\t')
+        #self.id_incp_mmsr = id_incp_mmsr.set_index('id')
 
         # ResNet
-        id_resnet_mmsr = pd.read_csv(f'{dataset_folder}/id_resnet_mmsr.tsv', sep='\t')
-        self.id_resnet_mmsr = id_resnet_mmsr.set_index('id')
+        #id_resnet_mmsr = pd.read_csv(f'{dataset_folder}/id_resnet_mmsr.tsv', sep='\t')
+        #self.id_resnet_mmsr = id_resnet_mmsr.set_index('id')
 
         # URL
         self.id_url_mmsr = pd.read_csv(f'{dataset_folder}/id_url_mmsr.tsv', sep='\t')
 
         # VGG19
-        id_vgg19_mmsr = pd.read_csv(f'{dataset_folder}/id_vgg19_mmsr.tsv', sep='\t')
-        self.id_vgg19_mmsr = id_vgg19_mmsr.set_index('id')
+        #id_vgg19_mmsr = pd.read_csv(f'{dataset_folder}/id_vgg19_mmsr.tsv', sep='\t')
+        #self.id_vgg19_mmsr = id_vgg19_mmsr.set_index('id')
 
         # ID genres
         self.data_id_genres = pd.read_csv(f'{dataset_folder}/id_genres_mmsr.tsv', sep='\t')
@@ -183,10 +183,10 @@ class RecommenderSystem:
             return jaccard_songs
         
         # BERT similarity
-        if algorithm == 'bert':
-            bert_songs = self.retrieve_similar_songs(song_id, self.bert_data, self.cosine_similarity_between_songs, self.info_data, top_n).assign(method='bert')
-            bert_songs = bert_songs.sort_values('similarity_score', ascending=False)
-            return bert_songs
+        #if algorithm == 'bert':
+            #bert_songs = self.retrieve_similar_songs(song_id, self.bert_data, self.cosine_similarity_between_songs, self.info_data, top_n).assign(method='bert')
+            #bert_songs = bert_songs.sort_values('similarity_score', ascending=False)
+            #return bert_songs
 
         # Cosine similarity with TF-IDF
         elif algorithm == 'tf_idf':
@@ -195,10 +195,10 @@ class RecommenderSystem:
             return tfidf_songs
 
         # Cosine similarity with Word2Vec embeddings
-        elif algorithm == 'word2vec':
-            word2vec_songs = self.retrieve_similar_songs(song_id, self.word2vec_data, self.cosine_similarity_between_songs, self.info_data, top_n).assign(method='word2vec')
-            word2vec_songs = word2vec_songs.sort_values('similarity_score', ascending=False)
-            return word2vec_songs
+        #elif algorithm == 'word2vec':
+            #word2vec_songs = self.retrieve_similar_songs(song_id, self.word2vec_data, self.cosine_similarity_between_songs, self.info_data, top_n).assign(method='word2vec')
+            #word2vec_songs = word2vec_songs.sort_values('similarity_score', ascending=False)
+            #return word2vec_songs
         
         #Cosine similarity with MFCC Bow 
         elif algorithm == 'mfcc_bow':
@@ -213,39 +213,39 @@ class RecommenderSystem:
             return id_ivec256_mmsr_songs
 
         #Cosine similarity with id_blf_spectral_mmsr
-        elif algorithm == 'id_blf_spectral_mmsr':
-            id_blf_spectral_mmsr_songs = self.retrieve_similar_songs(song_id, self.id_blf_spectral_mmsr, self.cosine_similarity_between_songs, self.info_data, top_n).assign(method='id_blf_spectral_mmsr')
-            id_blf_spectral_mmsr_songs = id_blf_spectral_mmsr_songs.sort_values('similarity_score', ascending=False)
-            return id_blf_spectral_mmsr_songs
+        #elif algorithm == 'id_blf_spectral_mmsr':
+            #id_blf_spectral_mmsr_songs = self.retrieve_similar_songs(song_id, self.id_blf_spectral_mmsr, self.cosine_similarity_between_songs, self.info_data, top_n).assign(method='id_blf_spectral_mmsr')
+            #id_blf_spectral_mmsr_songs = id_blf_spectral_mmsr_songs.sort_values('similarity_score', ascending=False)
+            #return id_blf_spectral_mmsr_songs
         
         #Cosine similarity with id_musicnn_mmsr
-        elif algorithm == 'id_musicnn_mmsr':
-            id_musicnn_mmsr_songs = self.retrieve_similar_songs(song_id, self.id_musicnn_mmsr, self.cosine_similarity_between_songs, self.info_data, top_n).assign(method='id_musicnn_mmsr')
-            id_musicnn_mmsr_songs = id_musicnn_mmsr_songs.sort_values('similarity_score', ascending=False)
-            return id_musicnn_mmsr_songs
+        #elif algorithm == 'id_musicnn_mmsr':
+            #id_musicnn_mmsr_songs = self.retrieve_similar_songs(song_id, self.id_musicnn_mmsr, self.cosine_similarity_between_songs, self.info_data, top_n).assign(method='id_musicnn_mmsr')
+            #id_musicnn_mmsr_songs = id_musicnn_mmsr_songs.sort_values('similarity_score', ascending=False)
+            #return id_musicnn_mmsr_songs
 
         ### Video based
         #Cosine similarity with id_incp_mmsr
-        elif algorithm == 'id_incp_mmsr':
-            id_incp_mmsr_songs = self.retrieve_similar_songs(song_id, self.id_incp_mmsr, self.cosine_similarity_between_songs, self.info_data, top_n).assign(method='id_incp_mmsr')
-            id_incp_mmsr_songs = id_incp_mmsr_songs.sort_values('similarity_score', ascending=False)
-            return id_incp_mmsr_songs
+        #elif algorithm == 'id_incp_mmsr':
+            #id_incp_mmsr_songs = self.retrieve_similar_songs(song_id, self.id_incp_mmsr, self.cosine_similarity_between_songs, self.info_data, top_n).assign(method='id_incp_mmsr')
+            #id_incp_mmsr_songs = id_incp_mmsr_songs.sort_values('similarity_score', ascending=False)
+            #return id_incp_mmsr_songs
 
         #Cosine similarity with id_resnet_mmsr
-        elif algorithm == 'id_resnet_mmsr':
-            id_resnet_mmsr_songs = self.retrieve_similar_songs(song_id, self.id_resnet_mmsr, self.cosine_similarity_between_songs, self.info_data, top_n).assign(method='id_resnet_mmsr')
-            id_resnet_mmsr_songs = id_resnet_mmsr_songs.sort_values('similarity_score', ascending=False)
-            return id_resnet_mmsr_songs
+        #elif algorithm == 'id_resnet_mmsr':
+            #id_resnet_mmsr_songs = self.retrieve_similar_songs(song_id, self.id_resnet_mmsr, self.cosine_similarity_between_songs, self.info_data, top_n).assign(method='id_resnet_mmsr')
+            #id_resnet_mmsr_songs = id_resnet_mmsr_songs.sort_values('similarity_score', ascending=False)
+            #return id_resnet_mmsr_songs
 
         #Cosine similarity with id_vgg19_mmsr
-        elif algorithm == 'id_vgg19_mmsr':
-            id_vgg19_mmsr_songs = self.retrieve_similar_songs(song_id, self.id_vgg19_mmsr, self.cosine_similarity_between_songs, self.info_data, top_n).assign(method='id_vgg19_mmsr')
-            id_vgg19_mmsr_songs = id_vgg19_mmsr_songs.sort_values('similarity_score', ascending=False)
-            return id_vgg19_mmsr_songs
+        #elif algorithm == 'id_vgg19_mmsr':
+            #id_vgg19_mmsr_songs = self.retrieve_similar_songs(song_id, self.id_vgg19_mmsr, self.cosine_similarity_between_songs, self.info_data, top_n).assign(method='id_vgg19_mmsr')
+            #id_vgg19_mmsr_songs = id_vgg19_mmsr_songs.sort_values('similarity_score', ascending=False)
+            #return id_vgg19_mmsr_songs
 
         ### Early fusion: Merge data before you search
         elif algorithm == 'early_fusion':
-            early_fusion_data = pd.concat([self.tfidf_data, self.word2vec_data], axis=1)
+            early_fusion_data = pd.concat([self.tfidf_data, self.id_ivec256_mmsr], axis=1)
             early_fusion_index = early_fusion_data.index
             early_fusion_pca = PCA(n_components=300)
             early_fusion_data = early_fusion_pca.fit_transform(early_fusion_data)
@@ -260,10 +260,10 @@ class RecommenderSystem:
             tfidf_songs = self.retrieve_similar_songs(song_id, self.tfidf_data, self.cosine_similarity_between_songs, self.info_data, top_n).assign(method='tfidf')
             tfidf_songs = tfidf_songs.sort_values('similarity_score', ascending=False)
 
-            word2vec_songs = self.retrieve_similar_songs(song_id, self.word2vec_data, self.cosine_similarity_between_songs, self.info_data, top_n).assign(method='word2vec')
-            word2vec_songs = word2vec_songs.sort_values('similarity_score', ascending=False)
+            id_ivec256_songs = self.retrieve_similar_songs(song_id, self.id_ivec256_mmsr, self.cosine_similarity_between_songs, self.info_data, top_n).assign(method='word2vec')
+           id_ivec256_songs = id_ivec256_songs.sort_values('similarity_score', ascending=False)
 
-            late_fusion_scores = (tfidf_songs['similarity_score'] + word2vec_songs['similarity_score']) / 2
+            late_fusion_scores = (tfidf_songs['similarity_score'] + id_ivec256_songs['similarity_score']) / 2
             late_fusion_data = tfidf_songs.drop(columns=['similarity_score'])
             late_fusion_mmsr_songs = pd.merge(late_fusion_data, late_fusion_scores, left_index=True, right_index=True)
             late_fusion_mmsr_songs['method'] = 'late_fusion'
