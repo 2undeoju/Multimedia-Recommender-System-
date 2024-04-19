@@ -1,4 +1,4 @@
-## My first multimedia recommender system, it is very interactive.
+## Multimedia recommender system, it is very interactive.
 
 The application requires the artiste's name and song name as given in the dataset.
 
